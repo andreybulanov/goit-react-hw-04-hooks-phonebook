@@ -11,10 +11,6 @@ export default function App() {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  useEffect(() => {
     const storageContacts = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(storageContacts);
 
@@ -22,6 +18,10 @@ export default function App() {
       setContacts([...parsedContacts]);
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   const notification = name =>
     toast(`${name} is already in contacts`, {
